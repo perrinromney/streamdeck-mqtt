@@ -34,12 +34,12 @@ $SD.on('connected', (jsonObj) => connected(jsonObj));
 
 function connected(jsonObj) {
     console.log(`[connected] ${JSON.stringify(jsonObj)}`);
-    $SD.on('com.bi0s.mqtt.action.willAppear', (jsonObj) => action.onWillAppear(jsonObj));
-    $SD.on('com.bi0s.mqtt.action.keyDown', (jsonObj) => action.onKeyDown(jsonObj));
-    $SD.on('com.bi0s.mqtt.action.didReceiveSettings', (jsonObj) => action.onDidReceiveSettings(jsonObj));
-    $SD.on('com.bi0s.mqtt.action.propertyInspectorDidAppear', (jsonObj) => { });
-    $SD.on('com.bi0s.mqtt.action.propertyInspectorDidDisappear', (jsonObj) => { });
-    $SD.on('com.bi0s.mqtt.action.sendToPlugin', (jsonObj) => action.onSendToPlugin(jsonObj));
+    $SD.on('com.perrin.mqtt.action.willAppear', (jsonObj) => action.onWillAppear(jsonObj));
+    $SD.on('com.perrin.mqtt.action.keyDown', (jsonObj) => action.onKeyDown(jsonObj));
+    $SD.on('com.perrin.mqtt.action.didReceiveSettings', (jsonObj) => action.onDidReceiveSettings(jsonObj));
+    $SD.on('com.perrin.mqtt.action.propertyInspectorDidAppear', (jsonObj) => { });
+    $SD.on('com.perrin.mqtt.action.propertyInspectorDidDisappear', (jsonObj) => { });
+    $SD.on('com.perrin.mqtt.action.sendToPlugin', (jsonObj) => action.onSendToPlugin(jsonObj));
 };
 
 function makeId(length) {

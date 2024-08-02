@@ -12,7 +12,21 @@
         ], 
         "SupportedInMultiActions": true,
         "Tooltip": "Your small Stream Deck MQTT Client.", 
-        "UUID": "com.bi0s.mqtt.action"
+        "UUID": "com.perrin.mqtt.action"
+      },
+      {
+        "Icon": "images/action", 
+        "Name": "bi0s MQTT", 
+        "States": [
+          {
+            "Image": "images/actionDefaultImage",
+            "TitleAlignment": "middle", 
+            "FontSize": "16"
+          }
+        ], 
+        "SupportedInMultiActions": true,
+        "Tooltip": "Your small Stream Deck MQTT Client.", 
+        "UUID": "com.perrin.mqtt.action"
       }
     ], 
     "SDKVersion": 2,

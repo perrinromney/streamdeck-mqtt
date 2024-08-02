@@ -2,7 +2,7 @@
     "Description": "Send simple payloads to any WS MQTT Server.", 
     "Name": "bi0s MQTT Stream Deck Client", 
     "Category": "Productivity", 
-    "com.bi0s.mqtt.action": {
+    "com.perrin.mqtt.action": {
       "Name": "Simple Button", 
       "Tooltip": "Send payload via MQTT"
     },

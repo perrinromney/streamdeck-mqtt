@@ -1,4 +1,4 @@
-# com.bi0s.mqtt.sdPlugin
+# com.perrin.mqtt.sdPlugin
 
 Simple MQTT Client Plugin for Elgato Stream Deck.
 
@@ -8,7 +8,7 @@ Simple MQTT Client Plugin for Elgato Stream Deck.
 ## Changelog
 
 MQTT Plugin has been published to the store! 🎉
-Link: https://apps.elgato.com/plugins/com.bi0s.mqtt
+Link: https://apps.elgato.com/plugins/com.perrin.mqtt
 
 Thanks to Zack for the very fast help and publishing.
 
