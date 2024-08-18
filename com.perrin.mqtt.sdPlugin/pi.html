@@ -35,10 +35,10 @@
             <div class="sdpi-item-label" data-localize="ClientID">Client ID</div>
             <input class="sdpi-item-value" id="valClientId" placeholder="SomeRandomID">
         </div>
-        <div class="sdpi-heading" data-localize="Payload">Payload</div>
+        <div class="sdpi-heading" data-localize="Payload">Publish</div>
         <div class="sdpi-item">
             <div class="sdpi-item-label" data-localize="Topic">Topic</div>
-            <input class="sdpi-item-value" id="valTopic" placeholder="/to/topic">
+            <input class="sdpi-item-value" id="valPublishTopic" placeholder="/to/topic">
         </div>
         <div class="sdpi-item">
             <div class="sdpi-item-label" data-localize="Message">Message</div>
@@ -50,6 +50,11 @@
                <option value="true" data-localize="Yes">Yes</option>
                <option value="false" data-localize="No">No</option>
             </select>
+        </div>
+        <div class="sdpi-heading" data-localize="Payload">Subscribe</div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label" data-localize="Topic">Topic</div>
+            <input class="sdpi-item-value" id="valSubscribeTopic" placeholder="/to/topic">
         </div>
         <div class="sdpi-heading" data-localize="Save">Save</div>
         <div class="sdpi-item">
@@ -73,9 +78,9 @@
                         document.getElementById("valPassword").value = settings.valPassword || "";
                         document.getElementById("valSsl").value = settings.valSsl || "";
                         document.getElementById("valClientId").value = settings.valClientId || "";
-                        document.getElementById("valTopic").value = settings.valTopic || "";
+                        document.getElementById("valPublishTopic").value = settings.valPublishTopic || "";
+                        document.getElementById("valSubscribeTopic").value = settings.valSubscribeTopic || "";
                         document.getElementById("valMessage").value = settings.valMessage || "";
-                        document.getElementById("valRetain").value = settings.valRetain || "";
                     }
                 });
             };
