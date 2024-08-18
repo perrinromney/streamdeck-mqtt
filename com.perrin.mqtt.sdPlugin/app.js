@@ -143,7 +143,7 @@ const action = {
         console.log('settings', settings)
         if(settings.valPublishTopic) {client.publish(settings.valPublishTopic,settings.valMessage || '')}
         $SD.api.showOk(jsonObj.context)
-        $SD.api.setTitle(jsonObj.context,'pressed')
+        // $SD.api.setTitle(jsonObj.context,'pressed')
         
 
     },
