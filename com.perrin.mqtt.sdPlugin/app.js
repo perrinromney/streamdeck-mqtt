@@ -1,44 +1,9 @@
 const topicMap = {}
 const jsnMap = {}
-let client = {}
+let client = null
 const clientId = 'mqttjs_' + Math.random().toString(16).slice(2, 8)
-// const host = 'ws://127.0.0.1:6251'
-// const options = {
-//   keepalive: 60,
-//   clientId: clientId,
-//   protocolId: 'MQTT',
-//   protocolVersion: 4,
-//   clean: true,
-//   reconnectPeriod: 1000,
-//   connectTimeout: 30 * 1000,
-//   will: {
-//     topic: 'WillMsg',
-//     payload: 'Connection Closed abnormally..!',
-//     qos: 0,
-//     retain: false
-//   },
-// }
+
 console.log('Connecting mqtt client')
-// client = mqtt.connect(host, options)
-// debugger
-// client.on('error', (err) => {
-//   console.log('Connection error: ', err)
-//   client.end()
-// })
-// client.on('reconnect', () => {
-//   console.log('Reconnecting...')
-// })
-// client.on("connect", () => {
-//     client.subscribe("TestListener", (err) => {
-//       if (!err) {
-//         client.publish("TestListener", "Hello mqtt");
-//       }
-//     });
-//   });
-//   client.on('message', (topic, message, packet) => {
-//     console.log(`Received Message: ${message.toString()} On topic: ${topic}`)
-//     handleMessage(topic,message.toString())
-//   })
       
 $SD.on('connected', (jsonObj) => connected(jsonObj));
 
@@ -94,8 +59,8 @@ const action = {
           clean: true,
           reconnectPeriod: 1000,
           connectTimeout: 30 * 1000,
-          username:jsonObj.payload.settings.valUsername,
-          password:jsonObj.payload.settings.valPassword,
+          // username:jsonObj.payload.settings.valUsername,
+          // password:jsonObj.payload.settings.valPassword,
           will: {
             topic: 'WillMsg',
             payload: 'Connection Closed abnormally..!',
@@ -103,7 +68,12 @@ const action = {
             retain: false
           },
         }
+        if(jsonObj?.payload?.settings?.valUsername && jsonObj?.payload?.settings?.valPassword){
+          options.username=jsonObj.payload.settings.valUsername,
+          options.password=jsonObj.payload.settings.valPassword
+        }
         console.log('Connecting mqtt client')
+        if(client) client.end()
         client = mqtt.connect(host, options)
         client.on('error', (err) => {
           console.log('Connection error: ', err)
@@ -127,12 +97,12 @@ const action = {
             console.log('subscribing to ',jsonObj.payload.settings.valSubscribeTopic );
             client.subscribe(jsonObj.payload.settings.valSubscribeTopic,{ qos: 0 })
         }
-        // this.setTitle(jsonObj, 'TESTING');
-
         $SD.api.sendToPropertyInspector(jsonObj.context, Utils.getProp(jsonObj, "payload.settings", {}), jsonObj.action);
     },
     onSendToPlugin: (jsonObj) => {
         console.log(`[onSendToPlugin] ${JSON.stringify(jsonObj)}`);
+        jsonObj.payload = {settings: jsonObj.payload}
+        action.onWillAppear(jsonObj)
         if (jsonObj.payload) {
             $SD.api.setSettings(jsonObj.context, jsonObj.payload);
         }
@@ -142,10 +112,7 @@ const action = {
         let settings = jsonObj.payload.settings;
         console.log('settings', settings)
         if(settings.valPublishTopic) {client.publish(settings.valPublishTopic,settings.valMessage || '')}
-        $SD.api.showOk(jsonObj.context)
-        // $SD.api.setTitle(jsonObj.context,'pressed')
-        
-
+        $SD.api.showOk(jsonObj.context)        
     },
     setTitle: function(jsn, title = '') {
         if (title || (this.settings && this.settings.hasOwnProperty('mynameinput'))) {
